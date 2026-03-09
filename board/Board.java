@@ -1,6 +1,6 @@
 package board;
 import pieces.Piece;
-import utils.Position
+import utils.Position;
 
 public class Board {
     private Piece [][] board;
