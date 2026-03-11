@@ -1,5 +1,10 @@
 package pieces;
 
-public class Pawn {
+import utils.Position;
+import java.util.ArrayList;
+import java.util.List;
+
+// Class for the pawn chess piece
+public class Pawn extends Piece{
     
 }

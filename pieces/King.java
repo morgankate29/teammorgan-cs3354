@@ -1,5 +1,9 @@
 package pieces;
 
-public class King {
+import utils.Position;
+import java.util.ArrayList;
+import java.util.List;
+
+public class King extends Piece{
     
 }
