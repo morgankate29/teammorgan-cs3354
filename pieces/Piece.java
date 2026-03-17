@@ -25,5 +25,5 @@ public abstract class Piece {
         this.position = newPosition;
     }
 
-    public abstract List<Position> possibleMoves(Board board);
+    public abstract List<Position> possibleMoves(Piece[][] board);
 }
