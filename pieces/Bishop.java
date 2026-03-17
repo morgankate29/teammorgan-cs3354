@@ -8,4 +8,12 @@ public class Bishop extends Piece{
     public Bishop(String color, Position position) {
         super(color, position);
     }
+
+    @Override
+    public List<Position> possibleMoves(Piece[][] board) {
+        List<Position> moves = new ArrayList<>();
+
+        int row = position.getRow();
+        int col = position.getCol();
+    }
 }
