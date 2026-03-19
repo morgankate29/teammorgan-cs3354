@@ -7,12 +7,16 @@ import java.util.Scanner;
 public class Game {
     private Board board;
 
-    // Constructor
+    /**
+     * Constructor
+     */
     public Game() {
         board = new Board;
     }
 
-    // Starts the game
+    /** 
+     * Starts the game
+     */
     public void start() {
         
     }

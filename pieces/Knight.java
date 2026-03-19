@@ -16,7 +16,9 @@ public class Knight extends Piece{
         int row = position.getRow();
         int col = position.getCol();
 
-        // Array stores all possible moves for knight
+        /** 
+         * Array stores all possible moves for knight
+         */
         int[][] allMoves = {
             {1, 2}, {1, -2}, {-1, 2}, {-1, -2}, {2, 1}, {2, -1}, {-2, 1}, {-2, -1}
         };

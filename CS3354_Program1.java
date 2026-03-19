@@ -1,4 +1,6 @@
-// Includes main function that executes the full chess game
+/**
+ * Includes main function that executes the full chess game
+ */
 
 package CS3354_Prog1;
 import CS3354_Prog1.game.Game;

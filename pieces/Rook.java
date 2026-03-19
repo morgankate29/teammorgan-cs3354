@@ -16,7 +16,9 @@ public class Rook extends Piece{
         int row = position.getRow();
         int col = position.getCol();
 
-        // Moving up
+        /** 
+         * Moving up
+         */
         for(int i = row - 1; i >= 0; i--) {
             moves.add(new Position(i, col));
             if(board[i][col] != null) {
@@ -24,7 +26,9 @@ public class Rook extends Piece{
             }
         }
 
-        // Moving down
+        /** 
+         * Moving down
+         */
         for(int i = row + 1; i < 8; i++) {
             moves.add(new Position(i, col));
             if(board[i][col] != null) {
@@ -32,7 +36,9 @@ public class Rook extends Piece{
             }
         }
 
-        // Moving right
+        /** 
+         * Moving right
+         */
         for(int i = col - 1; i >= 0; i--) {
             moves.add(new Position(row, i));
             if(board[row][i] != null) {
@@ -40,7 +46,9 @@ public class Rook extends Piece{
             }
         }
 
-        // Moving left
+        /** 
+         * Moving left
+         */
         for(int i = col + 1; i < 8; i++) {
             moves.add(new Position(row, i));
             if(board[row][i] != null) {

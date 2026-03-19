@@ -1,24 +1,34 @@
-// Contains position attributes, AKA board location
+/**
+ * Contains position attributes, AKA board location
+ */
 
 package utils;
 
-// Position on the chessboard
+/** 
+ * Position on the chessboard
+ */
 public class Position {
     private int row;
     private int col;
 
-    // Constructor
+    /** 
+     * Constructor
+     */
     public Position (int row, int col) {
         this.row = row;
         this.col = col;
     }
 
-    // Return row
+    /** 
+     * Return row
+     */
     public int getRow() {
         return row;
     }
 
-    // Return column
+    /** 
+     * Return column
+     */
     public int getCol() {
         return col;
     }
@@ -28,7 +38,9 @@ public class Position {
         this.col = col;
     }
 
-    // Convert Position to standard notation
+    /**
+     * Convert Position to standard notation
+     */
     @Override
     public String toString() {
         char colLetter = (char) ('A' + col);

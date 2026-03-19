@@ -9,7 +9,9 @@ public class Queen extends Piece{
         super(color, position);
     }
 
-    // Moves are Rook and Bishop combined
+    /** 
+     * Moves are Rook and Bishop combined
+     */
     @Override
     public List<Position> possibleMoves(Piece[][] board) {
         List<Position> moves = new ArrayList<>();
@@ -17,7 +19,9 @@ public class Queen extends Piece{
         int row = position.getRow();
         int col = position.getCol();
 
-        // Moving up
+        /** 
+         * Moving up
+         */
         for(int i = row - 1; i >= 0; i--) {
             moves.add(new Position(i, col));
             if(board[i][col] != null) {
@@ -25,7 +29,9 @@ public class Queen extends Piece{
             }
         }
 
-        // Moving down
+        /** 
+         * Moving down
+         */
         for(int i = row + 1; i < 8; i++) {
             moves.add(new Position(i, col));
             if(board[i][col] != null) {
@@ -33,7 +39,9 @@ public class Queen extends Piece{
             }
         }
 
-        // Moving right
+        /** 
+         * Moving right
+         */
         for(int i = col - 1; i >= 0; i--) {
             moves.add(new Position(row, i));
             if(board[row][i] != null) {
@@ -41,7 +49,9 @@ public class Queen extends Piece{
             }
         }
 
-        // Moving left
+        /** 
+         * Moving left
+         */
         for(int i = col + 1; i < 8; i++) {
             moves.add(new Position(row, i));
             if(board[row][i] != null) {
@@ -49,7 +59,9 @@ public class Queen extends Piece{
             }
         }
 
-        // Move up and to the left
+        /** 
+         * Move up and to the left
+         */
         for(int i = 1; row - i >= 0 && col - 1 >= 0; i++) {
             moves.add(new Position(row - i, col - i));
             if(board[row - i][col - i] != null) {
@@ -57,7 +69,9 @@ public class Queen extends Piece{
             }
         }
         
-        // Move up and to the right
+        /** 
+         * Move up and to the right
+         */
         for(int i = 1; row - i >= 0 && col + 1 < 8; i++) {
             moves.add(new Position(row - i, col + i));
             if(board[row - i][col + i] != null) {
@@ -65,7 +79,9 @@ public class Queen extends Piece{
             }
         }
 
-        // Move down and to the left
+        /** 
+         * Move down and to the left
+         */
         for(int i = 1; row + i < 8 && col - 1 >= 0; i++) {
             moves.add(new Position(row + i, col - i));
             if(board[row + i][col - i] != null) {
@@ -73,7 +89,9 @@ public class Queen extends Piece{
             }
         }
 
-        // Move down and to the right
+        /** 
+         * Move down and to the right
+         */
         for(int i = 1; row + i < 8 && col + 1 < 8; i++) {
             moves.add(new Position(row + i, col + i));
             if(board[row + i][col + i] != null) {
