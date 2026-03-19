@@ -11,7 +11,7 @@ public class Game {
      * Constructor
      */
     public Game() {
-        board = new Board;
+        board = new Board();
     }
 
     /** 
