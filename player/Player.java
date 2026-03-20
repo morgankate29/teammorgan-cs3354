@@ -12,6 +12,7 @@ import java.util.Scanner;
 public class Player {
     private String name;
     private String color;
+    private ArrayList availablePieces;
 
     public Player(String name, String color) {
         this.name = name;
