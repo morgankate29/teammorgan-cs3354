@@ -7,6 +7,7 @@ import java.util.List;
 public class King extends Piece{
     public King(String color, Position position) {
         super(color, position);
+        pieceRep = "K";
     }
 
     private boolean valid(int row, int col) {

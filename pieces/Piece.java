@@ -6,6 +6,7 @@ import java.util.List;
 public abstract class Piece {
     protected String color;
     protected Position position;
+    protected String pieceRep;
 
     public Piece(String color, Position position) {
         this.color = color;
@@ -25,4 +26,13 @@ public abstract class Piece {
     }
 
     public abstract List<Position> possibleMoves(Piece[][] board);
+
+    @Override
+    public String toString() {
+        if(color.equals("white")) {
+            return "w" + pieceRep;
+        } else {
+            return "b" + pieceRep;
+        }
+    }
 }

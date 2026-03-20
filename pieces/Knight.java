@@ -7,6 +7,7 @@ import java.util.List;
 public class Knight extends Piece{
     public Knight(String color, Position position) {
         super(color, position);
+        pieceRep = "N";
     }
 
     @Override

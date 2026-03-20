@@ -9,6 +9,7 @@ import java.util.List;
 public class Pawn extends Piece{
     public Pawn(String color, Position position) {
         super(color, position);
+        pieceRep = "p";
     }
 
     /** 
