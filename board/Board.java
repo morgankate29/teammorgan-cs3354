@@ -33,7 +33,7 @@ public class Board {
         board[0][0] = new Rook("black", new Position(0, 0));
         board[0][7] = new Rook("black", new Position(0, 7));
         board[7][0] = new Rook("white", new Position(7, 0));
-        board[7][6] = new Rook("white", new Position(7, 7));
+        board[7][7] = new Rook("white", new Position(7, 7));
 
         /** 
          * Knights
@@ -81,7 +81,7 @@ public class Board {
      */
 
     public void display() {
-        System.out.println("  A B C D E F G H");
+        System.out.println("  A  B  C  D  E  F  G  H");
         for (int i = 0; i < 8; i++) {
             System.out.print((8 - i) + " ");
             for (int j = 0; j < 8; j++) {
