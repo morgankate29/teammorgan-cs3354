@@ -1,10 +1,10 @@
 package board;
-import CS3354_Prog1.pieces.Bishop;
-import CS3354_Prog1.pieces.King;
-import CS3354_Prog1.pieces.Knight;
-import CS3354_Prog1.pieces.Pawn;
-import CS3354_Prog1.pieces.Queen;
-import CS3354_Prog1.pieces.Rook;
+import pieces.Bishop;
+import pieces.King;
+import pieces.Knight;
+import pieces.Pawn;
+import pieces.Queen;
+import pieces.Rook;
 import pieces.Piece;
 import utils.Position;
 
