@@ -28,7 +28,7 @@ public class Board {
         }
 
         /** 
-         * Rooks
+         * Rooks initial position
          */
         board[0][0] = new Rook("black", new Position(0, 0));
         board[0][7] = new Rook("black", new Position(0, 7));
@@ -36,7 +36,7 @@ public class Board {
         board[7][7] = new Rook("white", new Position(7, 7));
 
         /** 
-         * Knights
+         * Knights initial position
          */
         board[0][1] = new Knight("black", new Position(0, 1));
         board[0][6] = new Knight("black", new Position(0, 7));
@@ -44,7 +44,7 @@ public class Board {
         board[7][6] = new Knight("white", new Position(7, 7));
 
         /** 
-         * Bishops
+         * Bishops initial position
          */
         board[0][2] = new Bishop("black", new Position(0, 2));
         board[0][5] = new Bishop("black", new Position(0, 5));
@@ -52,22 +52,28 @@ public class Board {
         board[7][5] = new Bishop("white", new Position(7, 5));
 
         /** 
-         * Queens
+         * Queens initial position
          */
         board[0][3] = new Queen("black", new Position(0, 3));
         board[7][3] = new Queen("white", new Position(7, 3));
 
         /** 
-         * Kings
+         * Kings initial position
          */
         board[0][4] = new King("black", new Position(0, 4));
         board[7][4] = new King("white", new Position(7, 4));
     }
 
+    /**
+     * Piece getter
+     */
     public Piece getPiece(Position pos) {
         return board[pos.getRow()][pos.getCol()];
     }
 
+    /**
+     * Piece setter
+     */
     public void setPiece(Position pos, Piece piece) {
         board[pos.getRow()][pos.getCol()] = piece;
     }

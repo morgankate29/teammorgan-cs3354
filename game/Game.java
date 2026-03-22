@@ -1,4 +1,6 @@
-// Includes game attributes and methods
+    /**
+     * Includes game attributes and methods
+     */
 
 package game;
 import board.Board;
