@@ -27,28 +27,28 @@ public class Game {
     */
 
     public void play() {
-        Scanner scnr = new Scanner(System.in);
+        try (Scanner scnr = new Scanner(System.in)) {
+            while(true) {
+                board.display();
 
-        while(true) {
-            board.display();
+                System.out.println(userTurn + "'s move (e.g., E2, E4): ");
+                String input = scnr.nextLine();
 
-            System.out.println(userTurn + "'s move (e.g., E2, E4): ");
-            String input = scnr.nextLine();
+                if(input.matches("[A-H][1-8] [A-H][1-8]")) {
+                    String[] parse = input.split(" ");
+                    String firstPos = parse[0];
+                    String newPos = parse[1];
 
-            if(input.matches("[A-H][1-8] [A-H][1-8]")) {
-                String[] parse = input.split(" ");
-                String firstPos = parse[0];
-                String newPos = parse[1];
+                    System.out.println("From " + firstPos + " to " + newPos);
 
-                System.out.println("From " + firstPos + " to " + newPos);
-
-                if(userTurn.equals("white")) {
-                    userTurn = "black";
+                    if(userTurn.equals("white")) {
+                        userTurn = "black";
+                    } else {
+                        userTurn = "white";
+                    }
                 } else {
-                    userTurn = "white";
+                    System.out.println("Invalid format. Try again. ");
                 }
-            } else {
-                System.out.println("Invalid format. Try again. ");
             }
         }
     }
