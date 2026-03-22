@@ -34,7 +34,7 @@ public class Game {
                 System.out.println(userTurn + "'s move (e.g., E2, E4): ");
                 String input = scnr.nextLine();
 
-                if(input.matches("[A-H][1-8] [A-H][1-8]")) {
+                if(input.matches("[A-H][1-8], [A-H][1-8]")) {
                     String[] parse = input.split(" ");
                     String firstPos = parse[0];
                     String newPos = parse[1];
