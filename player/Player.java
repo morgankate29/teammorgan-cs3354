@@ -21,6 +21,10 @@ public class Player {
         return name;
     }
 
+    public String getColor() {
+        return color;
+    }
+
     public List<Piece> getAvailablePieces() {
         return availablePieces;
     }
