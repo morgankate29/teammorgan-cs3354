@@ -1,10 +1,10 @@
 package gui;
 
 import javax.swing.*;
-import javax.swing.text.Position;
 
 import game.Game;
 import pieces.Piece;
+import utils.Position;
 
 public class SquarePanel extends JPanel {
     private Position position;
