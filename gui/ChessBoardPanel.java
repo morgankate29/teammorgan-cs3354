@@ -1,3 +1,8 @@
+/**
+ * Displays the 8x8 board
+ * Gets data from the Game and Board classes
+ */
+
 package gui;
 
 import javax.swing.*;
@@ -10,6 +15,12 @@ public class ChessBoardPanel extends JPanel {
     private SquarePanel[][] squarePlaces = new SquarePanel[8][8];
     private Game game;
 
+    /**
+     * Constructor with game object
+     * Creates 8x8 grid with squares
+     * Alternates colors on grid
+     * Gets pieces from Board
+     */
     public ChessBoardPanel(Game game) {
         this.game = game;
         setLayout(new GridLayout(8, 8));
@@ -19,6 +30,13 @@ public class ChessBoardPanel extends JPanel {
                 Position position = new Position(r, c);
                 SquarePanel sp = new SquarePanel(position, game);
                 squarePlaces[r][c] = sp;
+
+                if((r + c) % 2 == 0) {
+                    sp.setBackground(Color.WHITE);
+                } else {
+                    sp.setBackground(Color.BLACK);
+                }
+                
                 add(sp);
             }
         }
