@@ -27,4 +27,13 @@ public class SquarePanel extends JPanel {
         this.cbp = cbp;
 
     }
+
+    /**
+     * Sets a piece on a square
+     * Also redraws square
+     */
+    public void setPiece(Piece piece) {
+        this.piece = piece;
+        repaint();
+    }
 }
