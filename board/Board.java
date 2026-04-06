@@ -39,9 +39,9 @@ public class Board {
          * Knights initial position
          */
         board[0][1] = new Knight("black", new Position(0, 1));
-        board[0][6] = new Knight("black", new Position(0, 7));
-        board[7][1] = new Knight("white", new Position(7, 0));
-        board[7][6] = new Knight("white", new Position(7, 7));
+        board[0][6] = new Knight("black", new Position(0, 6));
+        board[7][1] = new Knight("white", new Position(7, 1));
+        board[7][6] = new Knight("white", new Position(7, 6));
 
         /** 
          * Bishops initial position

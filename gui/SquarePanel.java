@@ -1,5 +1,5 @@
 /**
- * 
+ * Represents a single square on the chessboard
  */
 
 package gui;
@@ -13,8 +13,18 @@ import utils.Position;
 public class SquarePanel extends JPanel {
     private Position position;
     private Piece piece;
+    private Game game;
+    private ChessBoardPanel cbp;
 
-    public SquarePanel(Position position, Game game) {
+    /**
+    * Constructor
+     * Initializes position, game, and boardPanel
+     * @param cbp 
+    */
+    public SquarePanel(Position position, Game game, ChessBoardPanel cbp) {
         this.position = position;
+        this.game = game;
+        this.cbp = cbp;
+
     }
 }

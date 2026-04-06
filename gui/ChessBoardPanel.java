@@ -6,9 +6,11 @@
 package gui;
 
 import javax.swing.*;
+
 import java.awt.*;
 
 import game.Game;
+import board.Board;
 import utils.Position;
 
 public class ChessBoardPanel extends JPanel {
@@ -36,9 +38,12 @@ public class ChessBoardPanel extends JPanel {
                 } else {
                     sp.setBackground(Color.BLACK);
                 }
-                
+
                 add(sp);
             }
         }
+
+
     }
+
 }
