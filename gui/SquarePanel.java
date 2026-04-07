@@ -5,6 +5,8 @@
 package gui;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
 import game.Game;
 import pieces.Piece;
@@ -19,13 +21,17 @@ public class SquarePanel extends JPanel {
     /**
     * Constructor
      * Initializes position, game, and boardPanel
-     * @param cbp 
     */
     public SquarePanel(Position position, Game game, ChessBoardPanel cbp) {
         this.position = position;
         this.game = game;
         this.cbp = cbp;
 
+        addMouseListener(new MouseAdapter) {
+            public void mouseClick(MouseEvent e) {
+                GameController.handleClick(position, game, cbp);
+            }
+        }
     }
 
     /**
