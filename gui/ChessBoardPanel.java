@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 
 import game.Game;
+import pieces.Piece;
 import board.Board;
 import utils.Position;
 
@@ -30,7 +31,7 @@ public class ChessBoardPanel extends JPanel {
         for(int r = 0; r < 8; r++) {
             for(int c = 0; c < 8; c++) {
                 Position position = new Position(r, c);
-                SquarePanel sp = new SquarePanel(position, game);
+                SquarePanel sp = new SquarePanel(position, game, null);
                 squarePlaces[r][c] = sp;
 
                 if((r + c) % 2 == 0) {
@@ -42,8 +43,19 @@ public class ChessBoardPanel extends JPanel {
                 add(sp);
             }
         }
+    }
 
-
+    public void refresh() {
+        Board board = game.getBoard();
+        
+        for (int r = 0; r < 8; r++) {
+            for (int c = 0;c < 8; c++) {
+                Position pos = new Position(r,c);
+                Piece piece = board.getPiece(pos);
+                squarePlaces[r][c].setPiece(piece);
+            }
+        }
+        repaint();
     }
 
 }

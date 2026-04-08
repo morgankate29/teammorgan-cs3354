@@ -101,4 +101,16 @@ public class Board {
             System.out.println();
         }
     }
+
+    public void movePiece(Position firstPos, Position newPos) {
+        Piece piece = getPiece(firstPos);
+        if(piece == null) {
+            return;
+        } else {
+            setPiece(newPos, piece);
+            setPiece(firstPos, null);
+            // piece.setPosition(newPos);
+        }
+
+    }
 }
