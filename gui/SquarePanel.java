@@ -27,11 +27,11 @@ public class SquarePanel extends JPanel {
         this.game = game;
         this.cbp = cbp;
 
-        addMouseListener(new MouseAdapter) {
-            public void mouseClick(MouseEvent e) {
+        addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
                 GameController.handleClick(position, game, cbp);
             }
-        }
+        });
     }
 
     /**
