@@ -18,13 +18,12 @@ public class Game {
         userTurn = "white";
     }
 
-    /** 
-    Starts the game
-     
-    public void start() {
-        
+    /**
+     * Returns the current board
+     */
+    public Board getBoard() {
+        return board;
     }
-    */
 
     public void play() {
         try (Scanner scnr = new Scanner(System.in)) {
