@@ -10,14 +10,6 @@ public class King extends Piece{
         pieceRep = "K";
     }
 
-    private boolean valid(int row, int col) {
-        if((row >= 0 && row < 8) && (col >= 0 && col <8)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     @Override
     public List<Position> possibleMoves(Piece[][] board) {
         List<Position> moves = new ArrayList<>();
@@ -31,8 +23,11 @@ public class King extends Piece{
                     continue;
                 }
 
-                if(valid(i, j)) {
-                    moves.add(new Position(i, j));
+                if(i >= 0 && i < 8 && j >= 0 && j < 8) {
+                    Piece target = board[i][j];
+                    if(target == null || !target.getColor().equals(this.color)) {
+                        moves.add(new Position(i, j));
+                    }
                 }
             }
         }

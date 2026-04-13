@@ -20,9 +20,8 @@ public class Bishop extends Piece{
         /** 
          * Move up and to the left
          */
-        for(int i = 1; row - i >= 0 && col - 1 >= 0; i++) {
-            moves.add(new Position(row - i, col - i));
-            if(board[row - i][col - i] != null) {
+        for(int i = 1; row - i >= 0 && col - i >= 0; i++) {
+            if(!addMove(board, moves, row - i, col - i)) {
                 break;
             }
         }
@@ -30,9 +29,8 @@ public class Bishop extends Piece{
         /**
          * Move up and to the right
          */
-        for(int i = 1; row - i >= 0 && col + 1 < 8; i++) {
-            moves.add(new Position(row - i, col + i));
-            if(board[row - i][col + i] != null) {
+        for(int i = 1; row - i >= 0 && col + i < 8; i++) {
+            if(!addMove(board, moves, row - i, col + i)) {
                 break;
             }
         }
@@ -40,9 +38,8 @@ public class Bishop extends Piece{
         /** 
          * Move down and to the left
          */
-        for(int i = 1; row + i < 8 && col - 1 >= 0; i++) {
-            moves.add(new Position(row + i, col - i));
-            if(board[row + i][col - i] != null) {
+        for(int i = 1; row + i < 8 && col - i >= 0; i++) {
+            if(!addMove(board, moves, row + i, col - i)) {
                 break;
             }
         }
@@ -50,13 +47,26 @@ public class Bishop extends Piece{
         /** 
          * Move down and to the right
          */
-        for(int i = 1; row + i < 8 && col + 1 < 8; i++) {
-            moves.add(new Position(row + i, col + i));
-            if(board[row + i][col + i] != null) {
+        for(int i = 1; row + i < 8 && col + i < 8; i++) {
+            if(!addMove(board, moves, row + i, col + i)) {
                 break;
             }
         }
 
         return moves;
+    }
+
+    private boolean addMove(Piece[][] board, List<Position> moves, int r, int c) {
+        Piece target = board[r][c];
+
+        if(board[r][c] == null) {
+            moves.add(new Position(r, c));
+            return true;
+        }
+        if(!target.getColor().equals(this.color)) {
+            moves.add(new Position(r, c));
+        }
+
+        return false;
     }
 }

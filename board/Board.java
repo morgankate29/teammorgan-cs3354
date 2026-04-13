@@ -110,12 +110,13 @@ public class Board {
             return false;
         } 
         
-        Piece target = getPiece(newPos);
         List<Position> validMoves = piece.possibleMoves(board);
 
         if(!validMoves.contains(newPos)) {
             return false;
         }
+
+        Piece target = getPiece(newPos);
 
         if(target != null && target.getColor().equals(piece.getColor())) {
             return false;
@@ -123,8 +124,9 @@ public class Board {
 
         setPiece(newPos, piece);
         setPiece(firstPos, null);
-        piece.move(newPos);
         
+        piece.move(newPos);
+
         return true;
 
     }
