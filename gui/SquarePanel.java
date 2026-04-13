@@ -18,6 +18,8 @@ public class SquarePanel extends JPanel {
     private Game game;
     private ChessBoardPanel cbp;
 
+    private JLabel pieceLabel;
+
     /**
     * Constructor
      * Initializes position, game, and boardPanel
@@ -40,6 +42,22 @@ public class SquarePanel extends JPanel {
      */
     public void setPiece(Piece piece) {
         this.piece = piece;
+
+        if(piece == null) {
+            pieceLabel.setIcon(null);
+        } else {
+            String path = getImagePath(piece);
+            ImageIcon icon = new ImageIcon(getClass().getResource(path));
+            Image image = icon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+            pieceLabel.setIcon(new ImageIcon(image));
+        }
         repaint();
+    }
+
+    private String getImagePath(Piece piece) {
+        String color = piece.getColor();
+        String type = piece.getClass().getSimpleName().toLowerCase();
+
+        return "/images/" + color + type + ".png";
     }
 }
