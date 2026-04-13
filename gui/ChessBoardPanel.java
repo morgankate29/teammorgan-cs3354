@@ -31,7 +31,7 @@ public class ChessBoardPanel extends JPanel {
         for(int r = 0; r < 8; r++) {
             for(int c = 0; c < 8; c++) {
                 Position position = new Position(r, c);
-                SquarePanel sp = new SquarePanel(position, game, null);
+                SquarePanel sp = new SquarePanel(position, game, this);
                 squarePlaces[r][c] = sp;
 
                 if((r + c) % 2 == 0) {
@@ -43,6 +43,8 @@ public class ChessBoardPanel extends JPanel {
                 add(sp);
             }
         }
+
+        refresh();
     }
 
     public void refresh() {
@@ -56,6 +58,15 @@ public class ChessBoardPanel extends JPanel {
             }
         }
         repaint();
+    }
+
+    public void highlightSquare(Position pos) {
+        for(int r = 0; r < 8; r++) {
+            for(int c = 0; c < 8; c++) {
+                squarePlaces[r][c].highlight(false);
+            }
+        }
+        squarePlaces[pos.getRow()][pos.getCol()].highlight(true);
     }
 
 }

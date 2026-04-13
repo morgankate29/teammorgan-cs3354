@@ -20,7 +20,13 @@ public class GameController {
      */
     public static void handleClick(Position pos, Game game, ChessBoardPanel cbp) {
         if(selectedPos == null) {
+            Piece piece = game.getBoard().getPiece(pos);
+            if(piece == null) {
+                return;
+            }
+
             selectedPos = pos;
+            cbp.highlightSquare(pos);
             return;
         }
 

@@ -68,4 +68,12 @@ public class SquarePanel extends JPanel {
 
         return "/images/" + color + type + ".png";
     }
+
+    public void highlight(boolean selected) {
+        if(selected) {
+            setBorder(BorderFactory.createLineBorder(Color.YELLOW));
+        } else {
+            setBorder(null);
+        }
+    }
 }
