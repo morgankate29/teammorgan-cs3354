@@ -29,7 +29,15 @@ public class SquarePanel extends JPanel {
         this.game = game;
         this.cbp = cbp;
 
+        setLayout(new BorderLayout());
+
+        pieceLabel = new JLabel();
+        pieceLabel.setHorizontalAlignment(JLabel.CENTER);
+        pieceLabel.setVerticalAlignment(JLabel.CENTER);
+        add(pieceLabel, BorderLayout.CENTER);
+
         addMouseListener(new MouseAdapter() {
+            @Override
             public void mouseClicked(MouseEvent e) {
                 GameController.handleClick(position, game, cbp);
             }
