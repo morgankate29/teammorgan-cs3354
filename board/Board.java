@@ -1,4 +1,6 @@
 package board;
+import java.util.List;
+
 import pieces.Bishop;
 import pieces.King;
 import pieces.Knight;
@@ -102,15 +104,28 @@ public class Board {
         }
     }
 
-    public void movePiece(Position firstPos, Position newPos) {
+    public boolean movePiece(Position firstPos, Position newPos) {
         Piece piece = getPiece(firstPos);
         if(piece == null) {
-            return;
-        } else {
-            setPiece(newPos, piece);
-            setPiece(firstPos, null);
-            // piece.setPosition(newPos);
+            return false;
+        } 
+        
+        Piece target = getPiece(newPos);
+        List<Position> validMoves = piece.possibleMoves(board);
+
+        if(!validMoves.contains(newPos)) {
+            return false;
         }
+
+        if(target != null && target.getColor().equals(piece.getColor())) {
+            return false;
+        } 
+
+        setPiece(newPos, piece);
+        setPiece(firstPos, null);
+        piece.move(newPos);
+        
+        return true;
 
     }
 }

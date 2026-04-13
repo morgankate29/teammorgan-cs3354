@@ -71,7 +71,7 @@ public class SquarePanel extends JPanel {
 
     public void highlight(boolean selected) {
         if(selected) {
-            setBorder(BorderFactory.createLineBorder(Color.YELLOW));
+            setBorder(BorderFactory.createLineBorder(Color.RED, 3));
         } else {
             setBorder(null);
         }

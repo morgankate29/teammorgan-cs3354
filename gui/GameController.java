@@ -19,8 +19,10 @@ public class GameController {
      * Handles user mouse clicks
      */
     public static void handleClick(Position pos, Game game, ChessBoardPanel cbp) {
+        Board board = game.getBoard();
+        Piece piece = board.getPiece(pos);
+
         if(selectedPos == null) {
-            Piece piece = game.getBoard().getPiece(pos);
             if(piece == null) {
                 return;
             }
@@ -30,22 +32,20 @@ public class GameController {
             return;
         }
 
-        Board board = game.getBoard();
         Piece movingPiece = board.getPiece(selectedPos);
         Piece targetPiece = board.getPiece(pos);
 
-        if(movingPiece == null) {
-            selectedPos = null;
-            return;
-        }
+        boolean moveSuccessful = board.movePiece(selectedPos, pos);
 
-        if(targetPiece instanceof King) {
-            JOptionPane.showMessageDialog(null, movingPiece.getColor() + " wins!");
-            System.exit(0);
+        if(moveSuccessful) {
+            if(targetPiece instanceof King) {
+                JOptionPane.showMessageDialog(null, movingPiece.getColor() + " wins!");
+                System.exit(0);
+            }
+            cbp.refresh();
         }
         
-        board.movePiece(selectedPos, pos);
-        cbp.refresh();
         selectedPos = null;
+        cbp.highlightSquare(pos);
     }
 }

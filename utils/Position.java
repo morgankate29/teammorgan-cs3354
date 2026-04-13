@@ -47,4 +47,22 @@ public class Position {
         int rowNum = 8 - row;
         return colLetter + "" + rowNum;
     }
+
+    @Override
+    public boolean equals(Object object) {
+        if(this == object) {
+            return true;
+        }
+        if(!(object instanceof Position)) {
+            return false;
+        }
+
+        Position other = (Position) object;
+        return this.getRow() == other.getRow() && this.getCol() == other.getCol();
+    }
+
+    @Override
+    public int hashCode() {
+        return 31 * row + col;
+    }
 }
