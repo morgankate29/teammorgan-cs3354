@@ -35,9 +35,9 @@ public class ChessBoardPanel extends JPanel {
                 squarePlaces[r][c] = sp;
 
                 if((r + c) % 2 == 0) {
-                    sp.setBackground(Color.WHITE);
+                    sp.setBackground(new Color(175, 196, 175));
                 } else {
-                    sp.setBackground(Color.GRAY);
+                    sp.setBackground(new Color(54, 79, 54));
                 }
 
                 add(sp);

@@ -19,7 +19,7 @@ public class ChessFrame extends JFrame {
      */
     public ChessFrame(Game game) {
         setTitle("Chess Game");
-        setSize(1000, 1000);
+        setSize(800, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
