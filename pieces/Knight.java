@@ -29,7 +29,10 @@ public class Knight extends Piece{
             int c = col + allMoves[i][1];
 
             if(r >= 0 && r < 8 && c >= 0 && c < 8) {
-                moves.add(new Position(r, c));
+                Piece target = board[r][c];
+                if(target == null || !target.getColor().equals(this.color)) {
+                    moves.add(new Position(r, c));
+                }
             }
         }
 

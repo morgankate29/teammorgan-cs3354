@@ -21,8 +21,7 @@ public class Rook extends Piece{
          * Moving up
          */
         for(int i = row - 1; i >= 0; i--) {
-            moves.add(new Position(i, col));
-            if(board[i][col] != null) {
+            if(!addMove(board, moves, i, col)) {
                 break;
             }
         }
@@ -31,8 +30,7 @@ public class Rook extends Piece{
          * Moving down
          */
         for(int i = row + 1; i < 8; i++) {
-            moves.add(new Position(i, col));
-            if(board[i][col] != null) {
+            if(!addMove(board, moves, i, col)) {
                 break;
             }
         }
@@ -40,9 +38,8 @@ public class Rook extends Piece{
         /** 
          * Moving right
          */
-        for(int i = col - 1; i >= 0; i--) {
-            moves.add(new Position(row, i));
-            if(board[row][i] != null) {
+        for(int j = col - 1; j >= 0; j--) {
+            if(!addMove(board, moves, row, j)) {
                 break;
             }
         }
@@ -50,13 +47,26 @@ public class Rook extends Piece{
         /** 
          * Moving left
          */
-        for(int i = col + 1; i < 8; i++) {
-            moves.add(new Position(row, i));
-            if(board[row][i] != null) {
+        for(int j = col + 1; j < 8; j++) {
+            if(!addMove(board, moves, row, j)) {
                 break;
             }
         }
 
         return moves;
+    }
+
+    private boolean addMove(Piece[][] board, List<Position> moves, int r, int c) {
+        Piece target = board[r][c];
+
+        if(board[r][c] == null) {
+            moves.add(new Position(r, c));
+            return true;
+        }
+        if(!target.getColor().equals(this.color)) {
+            moves.add(new Position(r, c));
+        }
+
+        return false;
     }
 }
