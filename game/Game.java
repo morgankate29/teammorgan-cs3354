@@ -5,8 +5,9 @@
 package game;
 import board.Board;
 import java.util.Scanner;
+import java.io.Serializable;
 
-public class Game {
+public class Game implements Serializable{
     private Board board;
     private String userTurn;
 
@@ -50,5 +51,10 @@ public class Game {
                 }
             }
         }
+    }
+
+    public void reset() {
+        board = new Board();
+        userTurn = "white";
     }
 }

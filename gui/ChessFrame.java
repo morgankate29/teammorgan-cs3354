@@ -5,9 +5,11 @@
 package gui;
 
 import javax.swing.*;
+
 import java.awt.*;
 
 import game.Game;
+import utils.GameIO;
 
 public class ChessFrame extends JFrame {
     /**
@@ -24,7 +26,7 @@ public class ChessFrame extends JFrame {
         setLayout(new BorderLayout());
 
         ChessBoardPanel cbp = new ChessBoardPanel(game);
-        add(new ChessBoardPanel(game), BorderLayout.CENTER);
+        add(cbp, BorderLayout.CENTER);
 
         setJMenuBar(createMenuBar(game, cbp));
 
@@ -52,15 +54,16 @@ public class ChessFrame extends JFrame {
         });
 
         saveGame.addActionListener(e -> {
-            GameIO.save(game);
+            GameIO.saveGame(game);
             JOptionPane.showMessageDialog(this, "Game saved!");
         });
 
         loadGame.addActionListener(e -> {
-            Game loaded = GameIO.load();
-            game.copyFrom(loaded);
-            cbp.refresh();
-            JOptionPane.showMessageDialog(this, "Game loaded!");
+            Game loaded = GameIO.loadGame();
+            if(loaded != null) {
+                this.dispose();
+                new ChessFrame(loaded);
+            }
         });
 
         return menuBar;
