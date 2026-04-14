@@ -49,6 +49,12 @@ public class ChessFrame extends JFrame {
 
         menuBar.add(fileMenu);
 
+        JMenu settingsMenu = new JMenu("Settings");
+        JMenuItem openSettings = new JMenuItem("Customize");
+        
+        settingsMenu.add(openSettings);
+        menuBar.add(settingsMenu);
+
         newGame.addActionListener(e -> {
             game.reset();
             GameController.resetSelection();
@@ -72,6 +78,10 @@ public class ChessFrame extends JFrame {
             new ChessFrame(loaded);
         });
 
+        openSettings.addActionListener(e -> {
+            new SettingsDialog(this, settings, cbp);
+        });
+        
         return menuBar;
     }
 }
