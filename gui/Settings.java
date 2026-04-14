@@ -8,5 +8,5 @@ public class Settings {
 
     public int squareSize = 80;
 
-    public String pieceStyle = "Black and White";
+    public String pieceColor = "Default";
 }

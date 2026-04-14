@@ -34,7 +34,7 @@ public class ChessBoardPanel extends JPanel {
         for(int r = 0; r < 8; r++) {
             for(int c = 0; c < 8; c++) {
                 Position position = new Position(r, c);
-                SquarePanel sp = new SquarePanel(position, game, this);
+                SquarePanel sp = new SquarePanel(position, game, this, settings);
                 squarePlaces[r][c] = sp;
 
                 if((r + c) % 2 == 0) {

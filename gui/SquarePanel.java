@@ -17,6 +17,7 @@ public class SquarePanel extends JPanel {
     private Piece piece;
     private Game game;
     private ChessBoardPanel cbp;
+    private Settings settings;
 
     private JLabel pieceLabel;
 
@@ -24,10 +25,11 @@ public class SquarePanel extends JPanel {
     * Constructor
      * Initializes position, game, and boardPanel
     */
-    public SquarePanel(Position position, Game game, ChessBoardPanel cbp) {
+    public SquarePanel(Position position, Game game, ChessBoardPanel cbp, Settings settings) {
         this.position = position;
         this.game = game;
         this.cbp = cbp;
+        this.settings = settings;
 
         setLayout(new BorderLayout());
 
@@ -66,7 +68,7 @@ public class SquarePanel extends JPanel {
         String color = piece.getColor();
         String type = piece.getClass().getSimpleName().toLowerCase();
 
-        return "/images/" + settings.pieceStyle + "_"+ color + type + ".png";
+        return "/images/" + settings.pieceColor + "_"+ color + type + ".png";
     }
 
     public void highlight(boolean selected) {
