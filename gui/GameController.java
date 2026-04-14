@@ -48,4 +48,8 @@ public class GameController {
         selectedPos = null;
         cbp.highlightSquare(pos);
     }
+
+    public static void resetSelection() {
+        selectedPos = null;
+    }
 }

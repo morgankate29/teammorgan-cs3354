@@ -66,7 +66,7 @@ public class SquarePanel extends JPanel {
         String color = piece.getColor();
         String type = piece.getClass().getSimpleName().toLowerCase();
 
-        return "/images/" + color + type + ".png";
+        return "/images/" + settings.pieceStyle + "_"+ color + type + ".png";
     }
 
     public void highlight(boolean selected) {

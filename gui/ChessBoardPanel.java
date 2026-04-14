@@ -17,6 +17,7 @@ import utils.Position;
 public class ChessBoardPanel extends JPanel {
     private SquarePanel[][] squarePlaces = new SquarePanel[8][8];
     private Game game;
+    private Settings settings;
 
     /**
      * Constructor with game object
@@ -24,8 +25,10 @@ public class ChessBoardPanel extends JPanel {
      * Alternates colors on grid
      * Gets pieces from Board
      */
-    public ChessBoardPanel(Game game) {
+    public ChessBoardPanel(Game game, Settings settings) {
         this.game = game;
+        this.settings = settings;
+
         setLayout(new GridLayout(8, 8));
 
         for(int r = 0; r < 8; r++) {
@@ -35,9 +38,9 @@ public class ChessBoardPanel extends JPanel {
                 squarePlaces[r][c] = sp;
 
                 if((r + c) % 2 == 0) {
-                    sp.setBackground(new Color(175, 196, 175));
+                    sp.setBackground(settings.lightColor);
                 } else {
-                    sp.setBackground(new Color(54, 79, 54));
+                    sp.setBackground(settings.darkColor);
                 }
 
                 add(sp);
@@ -67,6 +70,32 @@ public class ChessBoardPanel extends JPanel {
             }
         }
         squarePlaces[pos.getRow()][pos.getCol()].highlight(true);
+    }
+
+    public void clearHighlight() {
+        for(int r = 0; r < 8; r++) {
+            for(int c = 0; c < 8; c++) {
+                squarePlaces[r][c].highlight(false);
+            }
+        }
+    }
+
+    public void applySettings() {
+        for(int r = 0; r < 8; r++) {
+            for(int c = 0; c < 8; c++) {
+                SquarePanel sp = squarePlaces[r][c];
+
+                if((r + c) % 2 == 0) {
+                    sp.setBackground(settings.lightColor);
+                } else {
+                    sp.setBackground(settings.darkColor);
+                }
+
+                sp.setSize(new Dimension(settings.squareSize, settings.squareSize));
+            }
+        }
+        revalidate();
+        repaint();
     }
 
 }

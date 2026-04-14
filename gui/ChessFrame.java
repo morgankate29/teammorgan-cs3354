@@ -12,6 +12,7 @@ import game.Game;
 import utils.GameIO;
 
 public class ChessFrame extends JFrame {
+    private Settings settings = new Settings();
     /**
      * Constructor to initialize the window
      * Sets title and size of the window
@@ -25,7 +26,7 @@ public class ChessFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        ChessBoardPanel cbp = new ChessBoardPanel(game);
+        ChessBoardPanel cbp = new ChessBoardPanel(game, settings);
         add(cbp, BorderLayout.CENTER);
 
         setJMenuBar(createMenuBar(game, cbp));
@@ -50,6 +51,8 @@ public class ChessFrame extends JFrame {
 
         newGame.addActionListener(e -> {
             game.reset();
+            GameController.resetSelection();
+            cbp.clearHighlight();
             cbp.refresh();
         });
 
@@ -60,10 +63,13 @@ public class ChessFrame extends JFrame {
 
         loadGame.addActionListener(e -> {
             Game loaded = GameIO.loadGame();
-            if(loaded != null) {
-                this.dispose();
-                new ChessFrame(loaded);
+
+            if(loaded == null) {
+                JOptionPane.showMessageDialog(this, "Load failed!");
+                return;
             }
+            this.dispose();
+            new ChessFrame(loaded);
         });
 
         return menuBar;

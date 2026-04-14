@@ -2,8 +2,9 @@ package pieces;
 
 import utils.Position;
 import java.util.List;
+import java.io.Serializable;
 
-public abstract class Piece {
+public abstract class Piece implements Serializable {
     protected String color;
     protected Position position;
     protected String pieceRep;

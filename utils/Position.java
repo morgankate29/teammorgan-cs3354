@@ -3,11 +3,12 @@
  */
 
 package utils;
+import java.io.Serializable;
 
 /** 
  * Position on the chessboard
  */
-public class Position {
+public class Position implements Serializable {
     private int row;
     private int col;
 

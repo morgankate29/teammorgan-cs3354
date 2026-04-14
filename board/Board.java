@@ -1,5 +1,6 @@
 package board;
 import java.util.List;
+import java.io.Serializable;
 
 import pieces.Bishop;
 import pieces.King;
@@ -10,7 +11,7 @@ import pieces.Rook;
 import pieces.Piece;
 import utils.Position;
 
-public class Board {
+public class Board implements Serializable{
     private Piece [][] board;
 
     public Board() {
@@ -124,7 +125,7 @@ public class Board {
 
         setPiece(newPos, piece);
         setPiece(firstPos, null);
-        
+
         piece.move(newPos);
 
         return true;
