@@ -81,19 +81,9 @@ public class ChessBoardPanel extends JPanel {
     }
 
     public void applySettings() {
-        for(int r = 0; r < 8; r++) {
-            for(int c = 0; c < 8; c++) {
-                SquarePanel sp = squarePlaces[r][c];
+        int size = settings.squareSize * 8;
+        setPreferredSize(new Dimension(size, size));
 
-                if((r + c) % 2 == 0) {
-                    sp.setBackground(settings.lightColor);
-                } else {
-                    sp.setBackground(settings.darkColor);
-                }
-
-                sp.setSize(new Dimension(settings.squareSize, settings.squareSize));
-            }
-        }
         revalidate();
         repaint();
     }

@@ -11,7 +11,7 @@ public class SettingsDialog extends JDialog{
 
         JComboBox<String> colorChoice = new JComboBox<>(new String[]{"Green(Default)", "Pink", "Blue"});
         JComboBox<String> pieceChoice = new JComboBox<>(new String[]{"Default", "Brown"});
-        JComboBox<String> sizeChoice = new JComboBox<>(new String[]{"Small", "Medium(Default)", "Large"});
+        JComboBox<String> sizeChoice = new JComboBox<>(new String[]{"Small", "Medium", "Large"});
 
         JButton applyButton = new JButton("Apply");
 
@@ -45,7 +45,7 @@ public class SettingsDialog extends JDialog{
                 case "Small":
                     settings.squareSize = 60;
                     break;
-                case "Medium(Default)":
+                case "Medium":
                     settings.squareSize = 80;
                     break;
                 case "Large":
@@ -54,6 +54,9 @@ public class SettingsDialog extends JDialog{
             }
 
             cbp.applySettings();
+
+            SwingUtilities.getWindowAncestor(cbp).pack();
+
         });
         setVisible(true);
     }
