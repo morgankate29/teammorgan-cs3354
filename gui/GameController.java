@@ -1,6 +1,6 @@
 /**
- * Handles user interaction and gameplay
- */
+* Handles user interaction and gameplay
+*/
 package gui;
 
 import game.Game;
@@ -48,12 +48,11 @@ public class GameController {
 
         board.movePiece(selectedPos, pos);
         cbp.refresh();
-
+        
         if(targetPiece instanceof King) {
             JOptionPane.showMessageDialog(null, movingPiece.getColor() + " wins!");
             System.exit(0);
         }
-        
         
         selectedPos = null;
         cbp.highlightSquare(pos);
