@@ -105,6 +105,13 @@ public class Board implements Serializable{
         }
     }
 
+    /**
+     * Move piece method
+     * Validates the move based on piece's possible moves and captures
+     * @param firstPos
+     * @param newPos
+     * @return
+     */
     public boolean movePiece(Position firstPos, Position newPos) {
         Piece piece = getPiece(firstPos);
         if(piece == null) {
