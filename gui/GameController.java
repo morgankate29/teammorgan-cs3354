@@ -10,6 +10,7 @@ import utils.Position;
 
 import javax.swing.*;
 
+import CS3354_Prog1.gui.ChessBoardPanel;
 import board.Board;
 
 public class GameController {
@@ -45,13 +46,14 @@ public class GameController {
             return;
         }
 
+        board.movePiece(selectedPos, pos);
+        cbp.refresh();
+
         if(targetPiece instanceof King) {
             JOptionPane.showMessageDialog(null, movingPiece.getColor() + " wins!");
             System.exit(0);
         }
         
-        board.movePiece(selectedPos, pos);
-        cbp.refresh();
         
         selectedPos = null;
         cbp.highlightSquare(pos);
