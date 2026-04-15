@@ -39,20 +39,27 @@ public class GameController {
         Piece movingPiece = board.getPiece(selectedPos);
         Piece targetPiece = board.getPiece(pos);
 
-        boolean moveSuccessful = board.movePiece(selectedPos, pos);
-
-        if(moveSuccessful) {
-            if(targetPiece instanceof King) {
-                JOptionPane.showMessageDialog(null, movingPiece.getColor() + " wins!");
-                System.exit(0);
-            }
-            cbp.refresh();
+        if(movingPiece == null) {
+            selectedPos = null;
+            cbp.clearHighlights();
+            return;
         }
+
+        if(targetPiece instanceof King) {
+            JOptionPane.showMessageDialog(null, movingPiece.getColor() + " wins!");
+            System.exit(0);
+        }
+        
+        board.movePiece(selectedPos, pos);
+        cbp.refresh();
         
         selectedPos = null;
         cbp.highlightSquare(pos);
     }
 
+    /**
+     * Resets the selected position to null, clearing any selection
+     */
     public static void resetSelection() {
         selectedPos = null;
     }

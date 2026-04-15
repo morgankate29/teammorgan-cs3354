@@ -112,30 +112,15 @@ public class Board implements Serializable{
      * @param newPos
      * @return
      */
-    public boolean movePiece(Position firstPos, Position newPos) {
+    public void movePiece(Position firstPos, Position newPos) {
         Piece piece = getPiece(firstPos);
         if(piece == null) {
-            return false;
-        } 
-        
-        List<Position> validMoves = piece.possibleMoves(board);
-
-        if(!validMoves.contains(newPos)) {
-            return false;
-        }
-
-        Piece target = getPiece(newPos);
-
-        if(target != null && target.getColor().equals(piece.getColor())) {
-            return false;
+            return;
         } 
 
         setPiece(newPos, piece);
         setPiece(firstPos, null);
 
         piece.move(newPos);
-
-        return true;
-
     }
 }
