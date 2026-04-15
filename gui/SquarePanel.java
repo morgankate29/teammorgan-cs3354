@@ -36,6 +36,7 @@ public class SquarePanel extends JPanel {
         pieceLabel = new JLabel();
         pieceLabel.setHorizontalAlignment(JLabel.CENTER);
         pieceLabel.setVerticalAlignment(JLabel.CENTER);
+
         add(pieceLabel, BorderLayout.CENTER);
 
         addMouseListener(new MouseAdapter() {
@@ -57,9 +58,19 @@ public class SquarePanel extends JPanel {
             pieceLabel.setIcon(null);
         } else {
             String path = getImagePath(piece);
-            ImageIcon icon = new ImageIcon(getClass().getResource(path));
-            Image image = icon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
-            pieceLabel.setIcon(new ImageIcon(image));
+
+            int size = settings.squareSize - 10;
+            java.net.URL url = getClass().getResource(path);
+
+            if(url != null) {
+                ImageIcon icon = new ImageIcon(url);
+                Image image = icon.getImage().getScaledInstance(size, size, Image.SCALE_SMOOTH);
+                pieceLabel.setIcon(new ImageIcon(image));
+            } else {
+                System.out.println("IMAGENOT FOUND" + path);
+                pieceLabel.setIcon(null);
+                return;
+            }
         }
         repaint();
     }

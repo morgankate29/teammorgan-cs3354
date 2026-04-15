@@ -54,6 +54,7 @@ public class SettingsDialog extends JDialog{
             }
 
             cbp.applySettings();
+            cbp.refresh();
 
             SwingUtilities.getWindowAncestor(cbp).pack();
 
