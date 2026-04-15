@@ -1,9 +1,23 @@
+/**
+ * SettingsDialog class
+ * Dialog window for customizing chess board settings
+ * Allows user to change board colors, piece styles, and square size
+ */
 package gui;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class SettingsDialog extends JDialog{
+    /**
+     * Constructor to initialize the settings dialog
+     * Creates colors for board, piece styles, and square size options
+     * Adds action listener to apply button to update settings and referesh the board
+     * 
+     * @param parent
+     * @param settings
+     * @param cbp
+     */
     public SettingsDialog(JFrame parent, Settings settings, ChessBoardPanel cbp) {
         super(parent, "Settings", true);
         setSize(300, 300);

@@ -1,5 +1,6 @@
 /**
  * Main JFrame window for the GUI
+ * Contains ChessBoardPanel and menu bar
  */
 
 package gui;
@@ -15,10 +16,10 @@ public class ChessFrame extends JFrame {
     private Settings settings = new Settings();
     /**
      * Constructor to initialize the window
-     * Sets title and size of the window
-     * Makes sure the program closes when window closes
-     * Set a border layout
-     * Makes the window visible
+     * Sets title, size, close operation, and layout
+     * Creates ChessBoardPanel and adds it to the center
+     * Creates menu bar for new game, save game, load game, and settings
+     * Adds action listeners for menu items
      */
     public ChessFrame(Game game) {
         setTitle("Chess Game");

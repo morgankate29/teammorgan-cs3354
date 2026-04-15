@@ -1,3 +1,7 @@
+/**
+ * Settings class
+ * Holds customizable settings for chess game (colors, piece styles, square size)
+ */
 package gui;
 
 import java.awt.*;

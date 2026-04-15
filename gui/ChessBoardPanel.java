@@ -22,7 +22,7 @@ public class ChessBoardPanel extends JPanel {
     /**
      * Constructor with game object
      * Creates 8x8 grid with squares
-     * Alternates colors on grid
+     * Alternates colors on grid, depending on the setting colors
      * Gets pieces from Board
      */
     public ChessBoardPanel(Game game, Settings settings) {
@@ -50,6 +50,10 @@ public class ChessBoardPanel extends JPanel {
         refresh();
     }
 
+    /**
+     * Refreshes the board
+     * Gets pieces form Board and updates the squares accordingly
+     */
     public void refresh() {
         Board board = game.getBoard();
         
@@ -63,6 +67,10 @@ public class ChessBoardPanel extends JPanel {
         repaint();
     }
 
+    /**
+     * Highlights the square at the given position
+     * @param pos
+     */
     public void highlightSquare(Position pos) {
         for(int r = 0; r < 8; r++) {
             for(int c = 0; c < 8; c++) {
@@ -72,6 +80,10 @@ public class ChessBoardPanel extends JPanel {
         squarePlaces[pos.getRow()][pos.getCol()].highlight(true);
     }
 
+
+    /**
+     * Clears all highlights on the board
+     */
     public void clearHighlight() {
         for(int r = 0; r < 8; r++) {
             for(int c = 0; c < 8; c++) {
@@ -80,6 +92,9 @@ public class ChessBoardPanel extends JPanel {
         }
     }
 
+    /**
+     * Applies the settings to the board (square size and color)
+     */
     public void applySettings() {
         int squareSize = settings.squareSize;
         int boardSize = squareSize * 8;

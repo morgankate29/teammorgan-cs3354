@@ -17,6 +17,10 @@ public class GameController {
 
     /**
      * Handles user mouse clicks
+     * If no piece is selected, select the piece at the clicked position
+     * If a piece is already selected, move the piece to the clicked position if valid
+     * If the move results in capturing the king, display a message and terminate the program
+     * After click, clear the selection and highlights
      */
     public static void handleClick(Position pos, Game game, ChessBoardPanel cbp) {
         Board board = game.getBoard();
