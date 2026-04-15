@@ -41,7 +41,7 @@ public class GameController {
 
         if(movingPiece == null) {
             selectedPos = null;
-            cbp.clearHighlights();
+            cbp.clearHighlight();
             return;
         }
 
