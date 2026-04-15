@@ -68,9 +68,11 @@ public class SettingsDialog extends JDialog{
             }
 
             cbp.applySettings();
-            cbp.refresh();
-
-            SwingUtilities.getWindowAncestor(cbp).pack();
+            cbp.revalidate();
+            cbp.repaint();
+            
+            JFrame frame = SwingUtilities.getWindowAncestor(cbp);
+            frame.pack();
 
         });
         setVisible(true);
