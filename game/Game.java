@@ -4,6 +4,10 @@
 
 package game;
 import board.Board;
+import pieces.Piece;
+import utils.Position;
+
+import java.util.List;
 import java.util.Scanner;
 import java.io.Serializable;
 
@@ -56,5 +60,41 @@ public class Game implements Serializable{
     public void reset() {
         board = new Board();
         userTurn = "white";
+    }
+
+    private void switchTurn() {
+        if(userTurn.equals("white")) {
+            userTurn = "black";
+        } else {
+            userTurn = "white";
+        }
+    }
+
+    public boolean makeMove(Position firstPos, Position newPos) {
+        Piece piece = board.getPiece(firstPos);
+        if(piece == null) {
+            return false;
+        }
+
+        if(!piece.getColor().equals(userTurn)) {
+            return false;
+        }
+
+        List<Position> validMoves = piece.possibleMoves(board.getBoard());
+
+        boolean isValidMove = false;
+        for(int i = 0; i < validMoves.size(); i++) {
+            if(validMoves.get(i).equals(newPos)) {
+                isValidMove = true;
+                break;
+            }
+        }
+
+        if(isValidMove) {
+            board.movePiece(firstPos, newPos);
+            switchTurn();
+            return true;
+        }
+        return false;
     }
 }

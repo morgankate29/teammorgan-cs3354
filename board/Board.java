@@ -82,10 +82,6 @@ public class Board implements Serializable{
     }
 
     /**
-    * public boolean movePiece(Position from, Position to) {
-    */
-
-    /**
      * Display method
      */
 
@@ -105,6 +101,10 @@ public class Board implements Serializable{
         }
     }
 
+    public Piece[][] getBoard() {
+        return board;
+    }
+    
     /**
      * Move piece method
      * Validates the move based on piece's possible moves and captures

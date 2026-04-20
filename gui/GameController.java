@@ -10,7 +10,6 @@ import utils.Position;
 
 import javax.swing.*;
 
-import CS3354_Prog1.gui.ChessBoardPanel;
 import board.Board;
 
 public class GameController {

@@ -71,7 +71,7 @@ public class SettingsDialog extends JDialog{
             cbp.revalidate();
             cbp.repaint();
             
-            JFrame frame = SwingUtilities.getWindowAncestor(cbp);
+            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(cbp);
             frame.pack();
 
         });

@@ -39,7 +39,7 @@ public class Queen extends Piece{
         }
 
         /** 
-         * Moving right
+         * Moving left
          */
         for(int j = col - 1; j >= 0; j--) {
             if(!addMove(board, moves, row, j)) {
@@ -48,7 +48,7 @@ public class Queen extends Piece{
         }
 
         /** 
-         * Moving left
+         * Moving right
          */
         for(int j = col + 1; j < 8; j++) {
             if(!addMove(board, moves, row, j)) {
