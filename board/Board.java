@@ -1,5 +1,4 @@
 package board;
-import java.util.List;
 import java.io.Serializable;
 
 import pieces.Bishop;
@@ -84,7 +83,6 @@ public class Board implements Serializable{
     /**
      * Display method
      */
-
     public void display() {
         System.out.println("  A  B  C  D  E  F  G  H");
         for (int i = 0; i < 8; i++) {
@@ -101,6 +99,11 @@ public class Board implements Serializable{
         }
     }
 
+    /**
+     * Board getter
+     * Used in ChessFrame to update the GUI after each move
+     * @return
+     */
     public Piece[][] getBoard() {
         return board;
     }

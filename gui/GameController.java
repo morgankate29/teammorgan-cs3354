@@ -31,6 +31,10 @@ public class GameController {
                 return;
             }
 
+            if(!piece.getColor().equals(game.getUserTurn())) {
+                return;
+            }
+
             selectedPos = pos;
             cbp.highlightSquare(pos);
             return;
@@ -45,16 +49,17 @@ public class GameController {
             return;
         }
 
-        board.movePiece(selectedPos, pos);
-        cbp.refresh();
-        
-        if(targetPiece instanceof King) {
-            JOptionPane.showMessageDialog(null, movingPiece.getColor() + " wins!");
-            System.exit(0);
+        boolean moved = game.makeMove(selectedPos, pos);
+        if(moved) {
+            cbp.refresh();
+            if(targetPiece instanceof King) {
+                JOptionPane.showMessageDialog(null, movingPiece.getColor() + " wins!");
+                System.exit(0);
+            }
         }
-        
+
         selectedPos = null;
-        cbp.highlightSquare(pos);
+        cbp.clearHighlight();
     }
 
     /**

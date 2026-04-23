@@ -30,6 +30,18 @@ public class Game implements Serializable{
         return board;
     }
 
+    /**
+     * Returns the current user's turn
+     * @return
+     */
+    public String getUserTurn() {
+        return userTurn;
+    }
+
+    /**
+     * Main game loop
+     * Handles user input and updates the board accordingly
+     */
     public void play() {
         try (Scanner scnr = new Scanner(System.in)) {
             while(true) {
@@ -57,11 +69,17 @@ public class Game implements Serializable{
         }
     }
 
+    /**
+     * Reset method to start a new game
+     */
     public void reset() {
         board = new Board();
         userTurn = "white";
     }
 
+    /**
+     * Alternates between players after a valid move
+     */
     private void switchTurn() {
         if(userTurn.equals("white")) {
             userTurn = "black";
@@ -70,6 +88,13 @@ public class Game implements Serializable{
         }
     }
 
+    /**
+     * Move Piece Method
+     * Validates the move based on the piece's possible moves and captures
+     * @param firstPos
+     * @param newPos
+     * @return
+     */
     public boolean makeMove(Position firstPos, Position newPos) {
         Piece piece = board.getPiece(firstPos);
         if(piece == null) {
@@ -94,7 +119,8 @@ public class Game implements Serializable{
             board.movePiece(firstPos, newPos);
             switchTurn();
             return true;
+        } else {
+            return false;
         }
-        return false;
     }
 }
