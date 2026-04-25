@@ -50,6 +50,7 @@ public class GameController {
         }
 
         boolean moved = game.makeMove(selectedPos, pos);
+        
         if(moved) {
             cbp.refresh();
             if(targetPiece instanceof King) {

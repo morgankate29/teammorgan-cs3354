@@ -121,8 +121,8 @@ public class Board implements Serializable{
             return;
         } 
 
-        setPiece(newPos, piece);
-        setPiece(firstPos, null);
+        board[newPos.getRow()][newPos.getCol()] = piece;
+        board[firstPos.getRow()][firstPos.getCol()] = null;
 
         piece.move(newPos);
     }

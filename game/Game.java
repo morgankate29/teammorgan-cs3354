@@ -107,20 +107,18 @@ public class Game implements Serializable{
 
         List<Position> validMoves = piece.possibleMoves(board.getBoard());
 
-        boolean isValidMove = false;
-        for(int i = 0; i < validMoves.size(); i++) {
-            if(validMoves.get(i).equals(newPos)) {
-                isValidMove = true;
-                break;
-            }
-        }
-
-        if(isValidMove) {
-            board.movePiece(firstPos, newPos);
-            switchTurn();
-            return true;
-        } else {
+        if(!validMoves.contains(newPos)) {
             return false;
         }
+
+        Piece targetPiece = board.getPiece(newPos);
+        if(targetPiece != null && targetPiece.getColor().equals(piece.getColor())) {
+            return false;
+        }
+
+        board.movePiece(firstPos, newPos);
+        switchTurn();
+
+        return true;
     }
 }
