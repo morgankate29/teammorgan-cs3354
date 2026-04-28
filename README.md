@@ -28,4 +28,22 @@ In the lefthand corner, the user has the option to start a new game, save the cu
 game, and load that existing game under "File". The user can also customize the board's
 colors, piece colors, and board size under "Settings" as well. 
 
+IMPLEMENTED FEATURES
+	Foundational Features
+	- 8x8 Chessboard grid
+	- All chess pieces (Pawn, Rook, Knight, Queen, King)
+	- Move validation
+	- Piece capturing function
+	- Turn-based gameplay logic
 
+	GUI Features
+	- Interactive board
+	- Click-based piece movement
+	- Highlight selected squares
+	- Customizable board and pieces
+
+	Additional Features
+	- File menu to create a new game, save the current game, and load
+	the previous game
+	- Settings menu for board and piece customization
+	- Win message display when king is captured
