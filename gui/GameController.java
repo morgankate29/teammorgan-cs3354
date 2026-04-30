@@ -53,18 +53,23 @@ public class GameController {
         if(result != null && result.moved) {
             cbp.refresh();
 
+            if(result.checkmate) {
+                JOptionPane.showMessageDialog(null, "Checkmate! " + game.getUserTurn() + " wins!");
+                System.exit(0);
+                return;
+            }
+
             if(result.check) {
                 JOptionPane.showMessageDialog(null, "Check!");
             }
 
-            if(result.checkmate) {
-                JOptionPane.showMessageDialog(null, "Checkmate! " + game.getUserTurn() + " wins!");
-                System.exit(0);
-            }
         }
 
         selectedPos = null;
         cbp.clearHighlight();
+        cbp.revalidate();
+        cbp.repaint();
+        return;
     }
 
     /**

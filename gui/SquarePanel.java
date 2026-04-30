@@ -21,6 +21,7 @@ public class SquarePanel extends JPanel {
     private Settings settings;
 
     private JLabel pieceLabel;
+    private boolean highlighted = false;
 
     /**
     * Constructor
@@ -75,6 +76,9 @@ public class SquarePanel extends JPanel {
                 return;
             }
         }
+        pieceLabel.revalidate();
+        pieceLabel.repaint();
+        revalidate();
         repaint();
     }
 

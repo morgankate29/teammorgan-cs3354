@@ -7,6 +7,7 @@ import board.Board;
 import pieces.Piece;
 import utils.Position;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.io.Serializable;
@@ -133,45 +134,45 @@ public class Game implements Serializable{
         return false;
     }
 
-    private boolean checkAfterMove(Board temp, String color) {
-        Piece[][] b = temp.getBoard();
-        Position kingPos = null;
+    // private boolean checkAfterMove(Board temp, String color) {
+    //     Piece[][] b = temp.getBoard();
+    //     Position kingPos = null;
 
-        for(int r = 0; r < 8; r++) {
-            for(int c = 0; c < 8; c++) {
-                Piece p = b[r][c];
+    //     for(int r = 0; r < 8; r++) {
+    //         for(int c = 0; c < 8; c++) {
+    //             Piece p = b[r][c];
 
-                if(p instanceof pieces.King && p.getColor().equals(color)) {
-                    kingPos = new Position(r, c);
-                    break;
-                }
-            }
-            if(kingPos != null) {
-                break;
-            }
-        }
+    //             if(p instanceof pieces.King && p.getColor().equals(color)) {
+    //                 kingPos = new Position(r, c);
+    //                 break;
+    //             }
+    //         }
+    //         if(kingPos != null) {
+    //             break;
+    //         }
+    //     }
 
-        if(kingPos == null) {
-            return true;
-        }
+    //     if(kingPos == null) {
+    //         return true;
+    //     }
 
-        for(int r = 0; r < 8; r++) {
-            for(int c = 0; c < 8; c++) {
-                Piece p = b[r][c];
+    //     for(int r = 0; r < 8; r++) {
+    //         for(int c = 0; c < 8; c++) {
+    //             Piece p = b[r][c];
 
-                if(p != null && !p.getColor().equals(color)) {
-                    List<Position> moves = p.possibleMoves(b);
+    //             if(p != null && !p.getColor().equals(color)) {
+    //                 List<Position> moves = p.possibleMoves(b);
 
-                    for(int i = 0; i < moves.size(); i++) {
-                        if(moves.get(i).equals(kingPos)) {
-                            return true;
-                        }
-                    }
-                }
-            }
-        }
-        return false;
-    }
+    //                 for(int i = 0; i < moves.size(); i++) {
+    //                     if(moves.get(i).equals(kingPos)) {
+    //                         return true;
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     return false;
+    // }
 
     /**
      * Checks if the current player's king is in checkmate
@@ -193,12 +194,9 @@ public class Game implements Serializable{
                 if(p != null && p.getColor().equals(color)) {
                     List<Position> moves = p.possibleMoves(b);
 
-                    for(int i = 0; i < moves.size(); i++) {
-                        Position to = moves.get(i);
-                        Position from = p.getPosition();
-
+                    for(Position to : moves) {
                         Board temp = board.copyBoard();
-                        temp.movePiece(from, to);
+                        temp.movePiece(p.getPosition(), to);
 
                         Game tempGame = new Game();
                         tempGame.board = temp;
@@ -213,6 +211,7 @@ public class Game implements Serializable{
         }
         return true;
     }
+
     /**
      * Move Piece Method
      * Validates the move based on the piece's possible moves and captures
@@ -224,6 +223,7 @@ public class Game implements Serializable{
      */
     public MoveResult makeMove(Position firstPos, Position newPos) {
         Piece piece = board.getPiece(firstPos);
+
         if(piece == null) {
             return new MoveResult(false, false, false, null);
         }
@@ -232,17 +232,15 @@ public class Game implements Serializable{
             return new MoveResult(false, false, false, null);
         }
 
-        List<Position> validMoves = piece.possibleMoves(board.getBoard());
-
-        boolean found = false;
-        for(int i = 0; i < validMoves.size(); i++) {
-            if(validMoves.get(i).equals(newPos)) {
-                found = true;
+        boolean valid = false;
+        for(Position p : piece.possibleMoves(board.getBoard())) {
+            if(p.equals(newPos)) {
+                valid = true;
                 break;
             }
         }
 
-        if(!found) {
+        if(!valid) {
             return new MoveResult(false, false, false, null);
         }
 
@@ -251,24 +249,27 @@ public class Game implements Serializable{
             return new MoveResult(false, false, false, null);
         }
 
-        Board tempBoard = board.copyBoard();
+        Board temp = board.copyBoard();
+        temp.movePiece(firstPos, newPos);
 
-        Piece tempPiece = tempBoard.getPiece(firstPos);
-        tempBoard.setPiece(newPos, tempPiece);
-        tempBoard.setPiece(firstPos, null);
+        Game tempGame = new Game();
+        tempGame.board = temp;
 
-        String opponent = userTurn.equals("white") ? "black" : "white";
-        
-        if(checkAfterMove(tempBoard, userTurn)) {
+        if(tempGame.check(userTurn)) {
             return new MoveResult(false, false, false, null);
         }
 
-        board.movePiece(firstPos, newPos);
+        boolean check = tempGame.check(userTurn.equals("white") ? "black" : "white");
+        boolean checkmate = tempGame.checkmate(userTurn.equals("white") ? "black" : "white");
 
-        String winner = userTurn;
-        
+        String winner = null;
+        if(checkmate) {
+            winner = piece.getColor();
+        }
+
+        board.movePiece(firstPos, newPos);
         switchTurn();
 
-        return new MoveResult(true, check(opponent), checkmate(opponent), winner);
+        return new MoveResult(true, check, checkmate, winner);
     }
 }
