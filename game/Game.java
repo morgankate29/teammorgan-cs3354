@@ -107,6 +107,32 @@ public class Game implements Serializable{
     }
 
     /**
+     * Checks if the current player's king is in check
+     * Returns true if king is in check, false otherwise
+     */
+    public boolean isInCheck(String color) {
+        Position kingPos = findKing(color);
+        if(kingPos == null) {
+            return false;
+        }
+
+        Piece[][] b = board.getBoard();
+
+        for(int r = 0; r < 8; r++) {
+            for(int c = 0; c < 8; c++) {
+                Piece p = b[r][c];
+                if(p != null && !p.getColor().equals(color)) {
+                    List<Position> moves = p.possibleMoves(b);
+                    if(moves.contains(kingPos)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
      * Move Piece Method
      * Validates the move based on the piece's possible moves and captures
      * @param firstPos
