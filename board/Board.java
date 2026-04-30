@@ -109,6 +109,27 @@ public class Board implements Serializable{
     }
     
     /**
+     * Board copy method
+     * Creates a temporary copy of the board to simulate moves
+     * Does not affect current game state
+     */
+    public Board copyBoard() {
+        Board copy = new Board();
+        copy.board = new Piece[8][8];
+        
+        for(int r = 0; r < 8; r++) {
+            for(int c = 0; c < 8; c++) {
+                Piece p = this.board[r][c];
+
+                if(p != null) {
+                    copy.board[r][c] = p;
+                }
+            }
+        }
+        return copy;
+    }
+
+    /**
      * Move piece method
      * Validates the move based on piece's possible moves and captures
      * @param firstPos

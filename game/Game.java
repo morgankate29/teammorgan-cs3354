@@ -104,13 +104,14 @@ public class Game implements Serializable{
                 }
             }
         }
+        return null;
     }
 
     /**
      * Checks if the current player's king is in check
      * Returns true if king is in check, false otherwise
      */
-    public boolean isInCheck(String color) {
+    public boolean check(String color) {
         Position kingPos = findKing(color);
         if(kingPos == null) {
             return false;
@@ -132,6 +133,40 @@ public class Game implements Serializable{
         return false;
     }
 
+    public boolean checkmate(String color) {
+        if(!check(color)) {
+            return false;
+        }
+
+        Piece[][] b = board.getBoard();
+
+        for(int r = 0; r < 8; r++) {
+            for(int c = 0; c < 8; c++) {
+                Piece p = b[r][c];
+
+                if(p != null && p.getColor().equals(color)) {
+                    List<Position> moves = p.possibleMoves(b);
+
+                    for(int i = 0; i < moves.size(); i++) {
+                        Position to = moves.get(i);
+                        Position from = p.getPosition();
+
+                        Board temp = board.copyBoard();
+                        temp.movePiece(from, to);
+
+                        Game tempGame = new Game();
+                        tempGame.board = temp;
+
+                        if(!tempGame.check(color)) {
+                            return false;
+                        }
+
+                    }
+                }
+            }
+        }
+        return true;
+    }
     /**
      * Move Piece Method
      * Validates the move based on the piece's possible moves and captures
