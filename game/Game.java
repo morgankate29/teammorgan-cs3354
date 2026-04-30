@@ -7,7 +7,6 @@ import board.Board;
 import pieces.Piece;
 import utils.Position;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.io.Serializable;
@@ -134,46 +133,6 @@ public class Game implements Serializable{
         return false;
     }
 
-    // private boolean checkAfterMove(Board temp, String color) {
-    //     Piece[][] b = temp.getBoard();
-    //     Position kingPos = null;
-
-    //     for(int r = 0; r < 8; r++) {
-    //         for(int c = 0; c < 8; c++) {
-    //             Piece p = b[r][c];
-
-    //             if(p instanceof pieces.King && p.getColor().equals(color)) {
-    //                 kingPos = new Position(r, c);
-    //                 break;
-    //             }
-    //         }
-    //         if(kingPos != null) {
-    //             break;
-    //         }
-    //     }
-
-    //     if(kingPos == null) {
-    //         return true;
-    //     }
-
-    //     for(int r = 0; r < 8; r++) {
-    //         for(int c = 0; c < 8; c++) {
-    //             Piece p = b[r][c];
-
-    //             if(p != null && !p.getColor().equals(color)) {
-    //                 List<Position> moves = p.possibleMoves(b);
-
-    //                 for(int i = 0; i < moves.size(); i++) {
-    //                     if(moves.get(i).equals(kingPos)) {
-    //                         return true;
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
-    //     return false;
-    // }
-
     /**
      * Checks if the current player's king is in checkmate
      * Returns true if kind is in checkmate, false otherwise
@@ -259,8 +218,9 @@ public class Game implements Serializable{
             return new MoveResult(false, false, false, null);
         }
 
-        boolean check = tempGame.check(userTurn.equals("white") ? "black" : "white");
-        boolean checkmate = tempGame.checkmate(userTurn.equals("white") ? "black" : "white");
+        String opponent = userTurn.equals("white") ? "black" : "white";
+        boolean check = tempGame.check(opponent);
+        boolean checkmate = tempGame.checkmate(opponent);
 
         String winner = null;
         if(checkmate) {

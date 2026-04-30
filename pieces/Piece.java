@@ -27,6 +27,7 @@ public abstract class Piece implements Serializable {
     }
 
     public abstract List<Position> possibleMoves(Piece[][] board);
+    public abstract Piece copy();
 
     @Override
     public String toString() {
@@ -36,5 +37,4 @@ public abstract class Piece implements Serializable {
             return "b" + pieceRep;
         }
     }
-    
 }
