@@ -89,6 +89,24 @@ public class Game implements Serializable{
     }
 
     /**
+     * Helper function to find the position of the king
+     * Argument: color of the king to find
+     * Returns the position of the king, or null if not found
+     */
+    private Position findKing(String color) {
+        Piece[][] b = board.getBoard();
+
+        for(int r = 0; r < 8; r++) {
+            for(int c = 0; c < 8; c++) {
+                Piece p = b[r][c];
+                if(p instanceof pieces.King && p.getColor().equals(color)) {
+                    return new Position(r, c);
+                }
+            }
+        }
+    }
+
+    /**
      * Move Piece Method
      * Validates the move based on the piece's possible moves and captures
      * @param firstPos

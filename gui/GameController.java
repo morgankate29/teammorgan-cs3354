@@ -53,10 +53,11 @@ public class GameController {
         
         if(moved) {
             cbp.refresh();
-            if(targetPiece instanceof King) {
-                JOptionPane.showMessageDialog(null, movingPiece.getColor() + " wins!");
-                System.exit(0);
-            }
+            // if(targetPiece instanceof King) {
+            //     JOptionPane.showMessageDialog(null, movingPiece.getColor() + " wins!");
+            //     System.exit(0);
+            // }
+            
         }
 
         selectedPos = null;
