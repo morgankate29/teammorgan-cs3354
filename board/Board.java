@@ -122,7 +122,7 @@ public class Board implements Serializable{
                 Piece p = this.board[r][c];
 
                 if(p != null) {
-                    copy.board[r][c] = p;
+                    copy.board[r][c] = p.copy();
                 }
             }
         }

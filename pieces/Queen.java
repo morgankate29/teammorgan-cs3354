@@ -108,4 +108,8 @@ public class Queen extends Piece{
 
         return false;
     }
+
+    public Piece copy() {
+        return new Queen(this.color, new Position(this.position.getRow(), this.position.getCol()));
+    }
 }

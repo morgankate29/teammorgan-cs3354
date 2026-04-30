@@ -60,4 +60,8 @@ public class Pawn extends Piece{
 
         return moves;
     }
+
+    public Piece copy() {
+        return new Pawn(this.color, new Position(this.position.getRow(), this.position.getCol()));
+    }
 }

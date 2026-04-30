@@ -39,4 +39,8 @@ public class Knight extends Piece{
         return moves;
 
     }
+
+    public Piece copy() {
+        return new Knight(this.color, new Position(this.position.getRow(), this.position.getCol()));
+    }
 }

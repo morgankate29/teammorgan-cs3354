@@ -69,4 +69,8 @@ public class Bishop extends Piece{
 
         return false;
     }
+
+    public Piece copy() {
+        return new Bishop(this.color, new Position(this.position.getRow(), this.position.getCol()));
+    }
 }

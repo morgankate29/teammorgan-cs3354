@@ -69,4 +69,8 @@ public class Rook extends Piece{
 
         return false;
     }
+
+    public Piece copy() {
+        return new Rook(this.color, new Position(this.position.getRow(), this.position.getCol()));
+    }
 }

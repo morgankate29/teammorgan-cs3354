@@ -54,7 +54,9 @@ public class GameController {
             cbp.refresh();
 
             if(result.checkmate) {
-                JOptionPane.showMessageDialog(null, "Checkmate! " + game.getUserTurn() + " wins!");
+                String winner = result.winner;
+                cbp.refresh();
+                JOptionPane.showMessageDialog(null, "Checkmate! " + winner + " wins!");
                 System.exit(0);
                 return;
             }

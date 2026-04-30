@@ -33,4 +33,8 @@ public class King extends Piece{
         }
         return moves;
     }
+
+    public Piece copy() {
+        return new King(this.color, new Position(this.position.getRow(), this.position.getCol()));
+    }
 }

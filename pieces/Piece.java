@@ -36,5 +36,5 @@ public abstract class Piece implements Serializable {
             return "b" + pieceRep;
         }
     }
-
+    
 }
