@@ -3,8 +3,7 @@
 */
 package gui;
 
-import game.Game;
-import pieces.King;
+import game.*;
 import pieces.Piece;
 import utils.Position;
 
@@ -19,7 +18,8 @@ public class GameController {
      * Handles user mouse clicks
      * If no piece is selected, select the piece at the clicked position
      * If a piece is already selected, move the piece to the clicked position if valid
-     * If the move results in capturing the king, display a message and terminate the program
+     * Checks for check and checkmate after the move
+     * Shows dialog messages for check and checkmate
      * After click, clear the selection and highlights
      */
     public static void handleClick(Position pos, Game game, ChessBoardPanel cbp) {
@@ -41,7 +41,6 @@ public class GameController {
         }
 
         Piece movingPiece = board.getPiece(selectedPos);
-        Piece targetPiece = board.getPiece(pos);
 
         if(movingPiece == null) {
             selectedPos = null;
@@ -49,15 +48,19 @@ public class GameController {
             return;
         }
 
-        boolean moved = game.makeMove(selectedPos, pos);
-        
-        if(moved) {
+        MoveResult result = game.makeMove(selectedPos, pos);
+
+        if(result != null && result.moved) {
             cbp.refresh();
-            // if(targetPiece instanceof King) {
-            //     JOptionPane.showMessageDialog(null, movingPiece.getColor() + " wins!");
-            //     System.exit(0);
-            // }
-            
+
+            if(result.check) {
+                JOptionPane.showMessageDialog(null, "Check!");
+            }
+
+            if(result.checkmate) {
+                JOptionPane.showMessageDialog(null, "Checkmate! " + game.getUserTurn() + " wins!");
+                System.exit(0);
+            }
         }
 
         selectedPos = null;
@@ -70,4 +73,5 @@ public class GameController {
     public static void resetSelection() {
         selectedPos = null;
     }
+
 }

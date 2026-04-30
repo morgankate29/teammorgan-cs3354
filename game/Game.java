@@ -133,6 +133,52 @@ public class Game implements Serializable{
         return false;
     }
 
+    private boolean checkAfterMove(Board temp, String color) {
+        Piece[][] b = temp.getBoard();
+        Position kingPos = null;
+
+        for(int r = 0; r < 8; r++) {
+            for(int c = 0; c < 8; c++) {
+                Piece p = b[r][c];
+
+                if(p instanceof pieces.King && p.getColor().equals(color)) {
+                    kingPos = new Position(r, c);
+                    break;
+                }
+            }
+            if(kingPos != null) {
+                break;
+            }
+        }
+
+        if(kingPos == null) {
+            return true;
+        }
+
+        for(int r = 0; r < 8; r++) {
+            for(int c = 0; c < 8; c++) {
+                Piece p = b[r][c];
+
+                if(p != null && !p.getColor().equals(color)) {
+                    List<Position> moves = p.possibleMoves(b);
+
+                    for(int i = 0; i < moves.size(); i++) {
+                        if(moves.get(i).equals(kingPos)) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if the current player's king is in checkmate
+     * Returns true if kind is in checkmate, false otherwise
+     * @param color
+     * @return
+     */
     public boolean checkmate(String color) {
         if(!check(color)) {
             return false;
@@ -170,34 +216,59 @@ public class Game implements Serializable{
     /**
      * Move Piece Method
      * Validates the move based on the piece's possible moves and captures
+     * Simulates the move on a temp board to check if it results in check
+     * If move is valid and does not result in check, update the actual board and switch turns
      * @param firstPos
      * @param newPos
      * @return
      */
-    public boolean makeMove(Position firstPos, Position newPos) {
+    public MoveResult makeMove(Position firstPos, Position newPos) {
         Piece piece = board.getPiece(firstPos);
         if(piece == null) {
-            return false;
+            return new MoveResult(false, false, false, null);
         }
 
         if(!piece.getColor().equals(userTurn)) {
-            return false;
+            return new MoveResult(false, false, false, null);
         }
 
         List<Position> validMoves = piece.possibleMoves(board.getBoard());
 
-        if(!validMoves.contains(newPos)) {
-            return false;
+        boolean found = false;
+        for(int i = 0; i < validMoves.size(); i++) {
+            if(validMoves.get(i).equals(newPos)) {
+                found = true;
+                break;
+            }
+        }
+
+        if(!found) {
+            return new MoveResult(false, false, false, null);
         }
 
         Piece targetPiece = board.getPiece(newPos);
         if(targetPiece != null && targetPiece.getColor().equals(piece.getColor())) {
-            return false;
+            return new MoveResult(false, false, false, null);
+        }
+
+        Board tempBoard = board.copyBoard();
+
+        Piece tempPiece = tempBoard.getPiece(firstPos);
+        tempBoard.setPiece(newPos, tempPiece);
+        tempBoard.setPiece(firstPos, null);
+
+        String opponent = userTurn.equals("white") ? "black" : "white";
+        
+        if(checkAfterMove(tempBoard, userTurn)) {
+            return new MoveResult(false, false, false, null);
         }
 
         board.movePiece(firstPos, newPos);
+
+        String winner = userTurn;
+        
         switchTurn();
 
-        return true;
+        return new MoveResult(true, check(opponent), checkmate(opponent), winner);
     }
 }
