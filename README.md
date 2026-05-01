@@ -20,7 +20,7 @@ clicking the square the player wishes to move the piece to. If the move is inval
 the selected piece will simply remain in its original position, and the player will 
 have the opportunity to move their piece correctly before switching turns. 
 
-The board updates after each move, and the game ends when a king is captured. A new 
+The board updates after each move. A window will appear when a player is in check, but the game will resume once the window is closed. The game ends when a player reaches checkmate. A new 
 window will confirm who wins, and the program will automatically terminate when the 
 game is over. 
 
@@ -35,15 +35,19 @@ IMPLEMENTED FEATURES
 	- Move validation
 	- Piece capturing function
 	- Turn-based gameplay logic
+	- Check validation
+	- Checkmate validation
 
 	GUI Features
 	- Interactive board
 	- Click-based piece movement
 	- Highlight selected squares
 	- Customizable board and pieces
+	- Check message
+	- Checkmate message
 
 	Additional Features
 	- File menu to create a new game, save the current game, and load
 	the previous game
 	- Settings menu for board and piece customization
-	- Win message display when king is captured
+	- Win message display when checkmate occurs
