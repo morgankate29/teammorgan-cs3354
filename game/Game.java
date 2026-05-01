@@ -78,36 +78,6 @@ public class Game implements Serializable{
     }
 
     /**
-     * Alternates between players after a valid move
-     */
-    private void switchTurn() {
-        if(userTurn.equals("white")) {
-            userTurn = "black";
-        } else {
-            userTurn = "white";
-        }
-    }
-
-    /**
-     * Helper function to find the position of the king
-     * Argument: color of the king to find
-     * Returns the position of the king, or null if not found
-     */
-    private Position findKing(String color) {
-        Piece[][] b = board.getBoard();
-
-        for(int r = 0; r < 8; r++) {
-            for(int c = 0; c < 8; c++) {
-                Piece p = b[r][c];
-                if(p instanceof pieces.King && p.getColor().equals(color)) {
-                    return new Position(r, c);
-                }
-            }
-        }
-        return null;
-    }
-
-    /**
      * Checks if the current player's king is in check
      * Returns true if king is in check, false otherwise
      */
@@ -231,5 +201,35 @@ public class Game implements Serializable{
         switchTurn();
 
         return new MoveResult(true, check, checkmate, winner);
+    }
+
+    /**
+     * Alternates between players after a valid move
+     */
+    private void switchTurn() {
+        if(userTurn.equals("white")) {
+            userTurn = "black";
+        } else {
+            userTurn = "white";
+        }
+    }
+
+    /**
+     * Helper function to find the position of the king
+     * Argument: color of the king to find
+     * Returns the position of the king, or null if not found
+     */
+    private Position findKing(String color) {
+        Piece[][] b = board.getBoard();
+
+        for(int r = 0; r < 8; r++) {
+            for(int c = 0; c < 8; c++) {
+                Piece p = b[r][c];
+                if(p instanceof pieces.King && p.getColor().equals(color)) {
+                    return new Position(r, c);
+                }
+            }
+        }
+        return null;
     }
 }
